@@ -1,0 +1,18 @@
+client:
+  redis:
+    max_idle: 20
+    max_active: 100
+    max_conn_lifetime: 1000
+    idle_timeout: 180000
+    timeout: 1000
+    wait: true
+  service:
+    - name: redis_1
+      dsn: redis://username:password@127.0.0.1:6379/1?timeout=1000ms
+    - name: redis_2
+      dsn: redis://username:password@127.0.0.1:6379/2?timeout=1000ms
+      max_idle: 22
+      max_active: 111
+      max_conn_lifetime: 2000
+      idle_timeout: 200000
+      timeout: 2000
