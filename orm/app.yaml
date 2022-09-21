@@ -1,0 +1,40 @@
+client:
+  mysql:
+    max_idle: 11
+    max_open: 22
+    max_idle_time: 33
+  postgresql:
+    max_idle: 11
+    max_open: 22
+    max_idle_time: 33
+  sqlite:
+    max_idle: 11
+    max_open: 22
+    max_idle_time: 33
+  sqlserver:
+    max_idle: 11
+    max_open: 22
+    max_idle_time: 33
+  clickhouse:
+    max_idle: 11
+    max_open: 22
+    max_idle_time: 33
+  service:
+    - name: db_mysql
+      dsn: root:root@tcp(127.0.0.1:3306)/db1?charset=utf8&parseTime=True
+      driver: mysql
+      max_idle: 111
+      max_open: 222
+      max_idle_time: 333
+    - name: db_postgresql
+      dsn: "user=gorm password=gorm dbname=gorm port=9920 sslmode=disable TimeZone=Asia/Shanghai"
+      driver: postgresql
+    - name: db_sqlite
+      dsn: gopkg.db
+      driver: sqlite
+    - name: db_sqlserver
+      dsn: sqlserver://gorm:LoremIpsum86@localhost:9930?database=gorm
+      driver: sqlserver
+    - name: db_clickhouse
+      dsn: tcp://localhost:9000?database=gorm&username=gorm&password=gorm&read_timeout=10&write_timeout=20
+      driver: clickhouse
