@@ -1,0 +1,13 @@
+client:
+  etcd: 
+    timeout: 3000
+    tls_key: /usr/local/etcd_conf/key.pem
+    tls_cert: /usr/local/etcd_conf/cert.pem
+    ca_cert: /usr/local/etcd_conf/cacert.pem
+  service:
+    - name: etcd1
+      dsn: username:password@127.0.0.1:2379,127.0.0.1:2380
+      timeout: 1000
+      tls_key: /usr/local/etcd_conf/key.pem
+      tls_cert: /usr/local/etcd_conf/cert.pem
+      ca_cert: /usr/local/etcd_conf/cacert.pem
