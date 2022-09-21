@@ -1,0 +1,22 @@
+string_value: string value
+bool_value: true
+int_value: -1
+int32_value: -2
+int64_value: -3
+uint_value: 1
+uint32_value: 2
+uint64_value: 3
+float32_value: 1.11
+float64_value: 2.22
+
+subkey:
+  string_value: string value
+  bool_value: true
+  int_value: -1
+  int32_value: -2
+  int64_value: -3
+  uint_value: 1
+  uint32_value: 2
+  uint64_value: 3
+  float32_value: 1.11
+  float64_value: 2.22
