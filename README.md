@@ -1,2 +1,1 @@
-# gopkg
-Componentized packages for Go
+# Componentized Package For Go
