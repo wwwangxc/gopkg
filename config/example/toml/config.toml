@@ -1,0 +1,5 @@
+machine_id=1
+
+[local]
+env_name="test"
+login_name="${LOGNAME}"
