@@ -1,0 +1,13 @@
+client:
+  mysql:
+    max_idle: 11
+    max_open: 22
+    max_idle_time: 33
+  service:
+    - name: client1
+      dsn: root:root@tcp(127.0.0.1:3306)/db1?charset=utf8&parseTime=True
+    - name: client2
+      dsn: root:root@tcp(127.0.0.1:3306)/db2?charset=utf8&parseTime=True
+      max_idle: 111
+      max_open: 222
+      max_idle_time: 333
