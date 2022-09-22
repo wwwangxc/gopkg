@@ -1,5 +1,9 @@
 # gopkg Redis Package
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/wwwangxc/gopkg/redis)](https://goreportcard.com/report/github.com/wwwangxc/gopkg/redis)
+[![GoDoc](https://pkg.go.dev/badge/github.com/wwwangxc/gopkg/redis?status.svg)](https://pkg.go.dev/github.com/wwwangxc/gopkg/redis)
+[![OSCS Status](https://www.oscs1024.com/platform/badge/wwwangxc/gopkg.svg?size=small)](https://www.murphysec.com/dr/c1TuOdJ62DzT0agLwg)
+
 gopkg/redis is an componentized redis package.
 
 It provides:

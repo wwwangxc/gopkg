@@ -1,5 +1,9 @@
 # gopkg/concurrency
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/wwwangxc/gopkg/concurrency)](https://goreportcard.com/report/github.com/wwwangxc/gopkg/concurrency)
+[![GoDoc](https://pkg.go.dev/badge/github.com/wwwangxc/gopkg/concurrency?status.svg)](https://pkg.go.dev/github.com/wwwangxc/gopkg/concurrency)
+[![OSCS Status](https://www.oscs1024.com/platform/badge/wwwangxc/gopkg.svg?size=small)](https://www.murphysec.com/dr/c1TuOdJ62DzT0agLwg)
+
 gopkg/concurrency is an concurrency helper.
 
 ## Install

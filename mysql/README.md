@@ -1,5 +1,8 @@
 # gopkg MySQL Package
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/wwwangxc/gopkg/mysql)](https://goreportcard.com/report/github.com/wwwangxc/gopkg/mysql)
+[![GoDoc](https://pkg.go.dev/badge/github.com/wwwangxc/gopkg/mysql?status.svg)](https://pkg.go.dev/github.com/wwwangxc/gopkg/mysql)
+[![OSCS Status](https://www.oscs1024.com/platform/badge/wwwangxc/gopkg.svg?size=small)](https://www.murphysec.com/dr/c1TuOdJ62DzT0agLwg)
 
 gopkg/config is an componentized mysql package.
 
@@ -39,11 +42,11 @@ import (
 
 func main() {
     // new mysql client proxy.
-    // mysql.WithDSN(""): set dsn
-    // mysql.WithMaxIdle(20): sets the maximum number of connections in the idle connection pool.
-    // mysql.WithMaxIdleTime(1000) sets the maximum amount of time a connection may be reused. uint: milliseconds
-    // mysql.WithMaxOpen(20) sets the maximum number of open connections to the database.
-    cli := mysql.NewClientProxy("client1", mysql.WithDSN(""), mysql.WithMaxIdle(20), mysql.WithMaxIdleTime(1000), mysql.WithMaxOpen(20))
+    cli := mysql.NewClientProxy("client1",
+        mysql.WithDSN(""),            // set dsn
+        mysql.WithMaxIdle(20),        // sets the maximum number of connections in the idle connection pool.
+        mysql.WithMaxIdleTime(1000),  // sets the maximum amount of time a connection may be reused. uint: milliseconds
+        mysql.WithMaxOpen(20))        // sets the maximum number of open connections to the database.
     
     // Insert
     result, err := cli.Exec(context.TODO(), "INSERT INTO user (name) VALUES (?)", "wwwangxc")
