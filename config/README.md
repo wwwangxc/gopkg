@@ -1,5 +1,8 @@
 # gopkg/config
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/wwwangxc/gopkg/config)](https://goreportcard.com/report/github.com/wwwangxc/gopkg/config)
+[![GoDoc](https://pkg.go.dev/badge/github.com/wwwangxc/gopkg/config?status.svg)](https://pkg.go.dev/github.com/wwwangxc/gopkg/config)
+[![OSCS Status](https://www.oscs1024.com/platform/badge/wwwangxc/gopkg.svg?size=small)](https://www.murphysec.com/dr/c1TuOdJ62DzT0agLwg)
 
 gopkg/config is an componentized config plugin.
 

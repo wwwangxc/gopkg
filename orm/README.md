@@ -1,5 +1,9 @@
 # gopkg ORM Package
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/wwwangxc/gopkg/orm)](https://goreportcard.com/report/github.com/wwwangxc/gopkg/orm)
+[![GoDoc](https://pkg.go.dev/badge/github.com/wwwangxc/gopkg/orm?status.svg)](https://pkg.go.dev/github.com/wwwangxc/gopkg/orm)
+[![OSCS Status](https://www.oscs1024.com/platform/badge/wwwangxc/gopkg.svg?size=small)](https://www.murphysec.com/dr/c1TuOdJ62DzT0agLwg)
+
 gopkg/orm is an componentized orm package.
 
 it provides an easy way to configure and manage gorm.DB.
