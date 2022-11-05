@@ -97,10 +97,10 @@ func ExampleClientProxy_Delete() {
 
 	// or
 
-	// do etcd delte operation and convert result to map[string]string and an error
+	// do etcd delte operation and convert result to delete number and an error
 	deletedNumber, err := etcd.DeleteResult(etcd.NewClientProxy("etcd").Delete(context.Background(), "key"))
 	if err != nil {
-		fmt.Printf("get operation fail. error:%v", err)
+		fmt.Printf("delete operation fail. error:%v", err)
 		return
 	}
 
