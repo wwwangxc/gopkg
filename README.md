@@ -10,3 +10,4 @@
 | [redis](redis/README.md) | Redis client proxy based on [gomodule/redigo](https://github.com/gomodule/redigo) |
 | [etcd](etcd/README.md) | ETCD client proxy based on [go.etcd.io/etcd/client/v3](https://github.com/etcd-io/etcd/tree/main/client/v3) |
 | [concurrency](concurrency/README.md) | Concurrency helper |
+| [singleflight](singleflight/README.md) | singleflight helper |
