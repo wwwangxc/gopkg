@@ -4,7 +4,7 @@
 [![GoDoc](https://pkg.go.dev/badge/github.com/wwwangxc/gopkg/singleflight?status.svg)](https://pkg.go.dev/github.com/wwwangxc/gopkg/singleflight)
 [![OSCS Status](https://www.oscs1024.com/platform/badge/wwwangxc/gopkg.svg?size=small)](https://www.murphysec.com/dr/c1TuOdJ62DzT0agLwg)
 
-`gopkg/singleflight` is an helper for `golang.org/x/sync/singleflight`.
+`gopkg/singleflight` is an helper for [golang.org/x/sync/singleflight](https://pkg.go.dev/golang.org/x/sync/singleflight).
 
 ## Install
 
@@ -27,7 +27,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-    // the function for key `function_key` will expire in 1 minute. default 1 second
+	// the function for key `function_key` will expire in 1 minute. default 1 second
 	ret, err := singleflight.Do(ctx, "function_key",
 		func(ctx context.Context) (interface{}, error) {
 			// dosomething...
@@ -35,15 +35,17 @@ func main() {
 			return "Successfully", nil
 		}, singleflight.WithExpiresIn(time.Minute))
 
-    if err != nil {
-        if singleflight.IsTimeout(err) {
-            fmt.Println("timeout")
-            return
-        }
+	if err != nil {
+		if singleflight.IsTimeout(err) {
+			fmt.Println("timeout")
+			return
+		}
 
-        return fmt.Println(err)
-    }
+		fmt.Println(err)
+		return
+	}
 
-    fmt.Println("OK")
+	// Output: Successfully
+	fmt.Println(ret.(string))
 }
 ```
