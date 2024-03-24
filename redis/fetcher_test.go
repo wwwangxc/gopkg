@@ -11,7 +11,7 @@ import (
 	redigo "github.com/gomodule/redigo/redis"
 )
 
-func Test_fetcherImpl_Fetch(t *testing.T) {
+func Test_fetcherImpl_fetch(t *testing.T) {
 	type args struct {
 		ctx  context.Context
 		key  string
@@ -87,7 +87,7 @@ func Test_fetcherImpl_Fetch(t *testing.T) {
 			f := &fetcherImpl{
 				name: "client_name",
 			}
-			if err := f.Fetch(tt.args.ctx, tt.args.key, tt.args.dest, tt.args.opts...); (err != nil) != tt.wantErr {
+			if err := f.fetch(tt.args.ctx, tt.args.key, tt.args.dest, newFetchOptions(tt.args.opts...)); (err != nil) != tt.wantErr {
 				t.Errorf("fetcherImpl.Fetch() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
