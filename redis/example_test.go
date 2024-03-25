@@ -133,9 +133,11 @@ func ExampleFetcherProxy() {
 
 	// fetch object
 	err := f.Fetch(context.Background(), "fetcher_key", &obj,
-		redis.WithFetchCallback(callback, 1000*time.Millisecond),
-		redis.WithFetchUnmarshal(json.Unmarshal),
-		redis.WithFetchMarshal(json.Marshal))
+		redis.WithFetchCallback(callback, 1000*time.Millisecond), // set callback method and cache result for 1000 millisecond
+		redis.WithFetchUnmarshal(json.Unmarshal),                 // unmarshal by json
+		redis.WithFetchMarshal(json.Marshal),                     // marshal by json
+		redis.WithSingleflight(time.Second),                      // use singleflight for fetcher
+	)
 
 	if err != nil {
 		fmt.Printf("fetch fail. error: %v\n", err)
