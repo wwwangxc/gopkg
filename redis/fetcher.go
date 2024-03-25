@@ -5,9 +5,11 @@ import (
 	"errors"
 
 	redigo "github.com/gomodule/redigo/redis"
+	"github.com/wwwangxc/gopkg/singleflight"
 )
 
 // FetcherProxy object fetcher
+//
 //go:generate mockgen -source=fetcher.go -destination=mockredis/fetcher_mock.go -package=mockredis
 type FetcherProxy interface {
 
@@ -35,6 +37,18 @@ func NewFetcherProxy(name string, opts ...ClientOption) FetcherProxy {
 // Use json decode
 func (f *fetcherImpl) Fetch(ctx context.Context, key string, dest interface{}, opts ...FetchOption) error {
 	options := newFetchOptions(opts...)
+	if options.ExpireSingleflight == 0 {
+		return f.fetch(ctx, key, dest, options)
+	}
+
+	_, err := singleflight.Do(ctx, key, func(ctx context.Context) (interface{}, error) {
+		return nil, f.fetch(ctx, key, dest, options)
+	}, singleflight.WithExpiresIn(options.ExpireSingleflight))
+
+	return err
+}
+
+func (f *fetcherImpl) fetch(ctx context.Context, key string, dest interface{}, options *FetchOptions) error {
 	conn := f.getConn()
 	defer func() {
 		if err := conn.Close(); err != nil {
@@ -70,8 +84,8 @@ func (f *fetcherImpl) Fetch(ctx context.Context, key string, dest interface{}, o
 	}
 
 	return options.Unmarshal(data, dest)
-}
 
+}
 func (f *fetcherImpl) getConn() redigo.Conn {
 	return getRedisPool(f.name, f.opts...).Get()
 }

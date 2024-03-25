@@ -162,10 +162,11 @@ func WithLockRetry(retry time.Duration) LockOption {
 
 // FetchOptions fetch options
 type FetchOptions struct {
-	Expire    time.Duration
-	Callback  func() (interface{}, error)
-	Marshal   func(v interface{}) ([]byte, error)
-	Unmarshal func(data []byte, dest interface{}) error
+	Expire             time.Duration
+	ExpireSingleflight time.Duration
+	Callback           func() (interface{}, error)
+	Marshal            func(v interface{}) ([]byte, error)
+	Unmarshal          func(data []byte, dest interface{}) error
 }
 
 func newFetchOptions(opts ...FetchOption) *FetchOptions {
@@ -217,5 +218,12 @@ func WithFetchMarshal(marshal func(v interface{}) ([]byte, error)) FetchOption {
 func WithFetchUnmarshal(unmarshal func(data []byte, dest interface{}) error) FetchOption {
 	return func(options *FetchOptions) {
 		options.Unmarshal = unmarshal
+	}
+}
+
+// WithSingleflight use singleflight for fetcher
+func WithSingleflight(expire time.Duration) FetchOption {
+	return func(options *FetchOptions) {
+		options.ExpireSingleflight = expire
 	}
 }
