@@ -40,6 +40,10 @@ import (
 )
 
 func ExampleNewClientProxy() {
+	// default config is read from ./app.yaml
+	// you can also set config by code
+	// etcd.LoadConfig("./app.yaml")
+
 	_ = etcd.NewClientProxy("etcd1",
  		etcd.WithEndpoints([]string{"127.0.0.1:2379", "127.0.0.1:2380"}), // set endpoints
 		etcd.WithTimeout(3000),                // set timeout, unit millisecond, default 1000.
