@@ -37,6 +37,10 @@ import (
 )
 
 func main() {
+        // default config is read from ./app.yaml
+        // you can also set config by code
+        // redis.LoadConfig("./app.yaml")
+
         cli := redis.NewClientProxy("client_name",
                 redis.WithDSN("dsn"),             // set dsn, default use database.client.dsn
                 redis.WithMaxIdle(20),            // set max idel. default 2048
