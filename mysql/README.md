@@ -41,6 +41,10 @@ import (
 )
 
 func main() {
+	// default config is read from ./app.yaml
+	// you can also set config by code
+	// mysql.LoadConfig("./app.yaml")
+
     // new mysql client proxy.
     cli := mysql.NewClientProxy("client1",
         mysql.WithDSN(""),            // set dsn
