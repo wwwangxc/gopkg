@@ -2,11 +2,13 @@ package orm
 
 import (
 	"fmt"
+	"os"
 	"sync"
+
+	"gorm.io/gorm"
 
 	"github.com/wwwangxc/gopkg/config"
 	"github.com/wwwangxc/gopkg/orm/driver"
-	"gorm.io/gorm"
 )
 
 var (
@@ -15,15 +17,12 @@ var (
 )
 
 func init() {
-	c, err := loadAppConfig()
-	if err != nil {
-		logErrorf("config load fail. error:%v", err)
-		return
-	}
+	_ = initAppConfig("./app.yaml")
+}
 
-	for _, v := range c.getServiceConfigs() {
-		registerServiceConfig(v)
-	}
+// LoadConfig load config from file
+func LoadConfig(path string) error {
+	return initAppConfig(path)
 }
 
 type appConfig struct {
@@ -95,8 +94,26 @@ type serviceConfig struct {
 	gormConfig *gorm.Config `yaml:"-"`
 }
 
-func loadAppConfig() (*appConfig, error) {
-	configure, err := config.Load("./app.yaml")
+func initAppConfig(path string) error {
+	_, err := os.Stat(path)
+	if err != nil {
+		return err
+	}
+
+	c, err := loadAppConfig(path)
+	if err != nil {
+		return fmt.Errorf("config load fail. error:%v", err)
+	}
+
+	for _, v := range c.getServiceConfigs() {
+		registerServiceConfig(v)
+	}
+
+	return nil
+}
+
+func loadAppConfig(path string) (*appConfig, error) {
+	configure, err := config.Load(path)
 	if err != nil {
 		return &appConfig{}, nil
 	}
