@@ -33,6 +33,10 @@ import (
 )
 
 func main() {
+    // default config is read from ./app.yaml
+    // you can also set config by code
+    // orm.LoadConfig("./app.yaml")
+
 	db, err := orm.NewGORMProxy("db_mysql",
 		orm.WithDSN(""),                    // set dsn
 		orm.WithMaxIdle(20),                // set the maximum number of connections in the idle connection pool.
