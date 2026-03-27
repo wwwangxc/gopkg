@@ -360,7 +360,7 @@ func protocolToOptions(ctx context.Context, proto RequestProtocol) []RequestOpti
 		return nil
 	}
 
-	var opts []RequestOption
+	opts := make([]RequestOption, 0, 8)
 	opts = append(opts, protocolToAuthOptions(ctx, proto)...)
 	opts = append(opts, protocolToCookieOptions(ctx, proto)...)
 	opts = append(opts, protocolToHeadersOptions(ctx, proto)...)
