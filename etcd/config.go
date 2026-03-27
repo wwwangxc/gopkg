@@ -210,13 +210,19 @@ func registerClientConfig(c clientConfig) {
 
 func getClientConfig(name string) clientConfig {
 	clientConfigRW.RLock()
-	defer clientConfigRW.RUnlock()
+	if c, exist := clientConfigMap[name]; exist {
+		clientConfigRW.RUnlock()
+		return c
+	}
+	clientConfigRW.RUnlock()
 
-	c, exist := clientConfigMap[name]
-	if !exist {
-		c = defaultClientConfig(name)
-		clientConfigMap[name] = c
+	clientConfigRW.Lock()
+	defer clientConfigRW.Unlock()
+	if c, exist := clientConfigMap[name]; exist {
+		return c
 	}
 
+	c := defaultClientConfig(name)
+	clientConfigMap[name] = c
 	return c
 }
