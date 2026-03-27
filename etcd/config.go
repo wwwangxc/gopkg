@@ -214,7 +214,8 @@ func getClientConfig(name string) clientConfig {
 
 	c, exist := clientConfigMap[name]
 	if !exist {
-		clientConfigMap[name] = defaultClientConfig(name)
+		c = defaultClientConfig(name)
+		clientConfigMap[name] = c
 	}
 
 	return c
