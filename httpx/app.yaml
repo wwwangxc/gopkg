@@ -1,0 +1,37 @@
+client:
+  http: 
+    header:
+      User-Agent: gopkg/httpx
+      Content-Type: application/json;charset=UTF-8
+    transport:
+      max_idle_conns: 200
+      max_idle_conns_per_host: 50
+      max_conns_per_host: 100
+      idle_conn_timeout: 90s
+      tls_handshake_timeout: 3s
+      expect_continue_timeout: 1s
+      response_header_timeout: 5s
+      dial:
+        timeout: 3s
+        keep_alive: 30s
+  service:
+    - name: http1
+      dsn: https://httpbin.org
+      timeout: 3000
+    - name: http2
+      dsn: https://httpbin1.org,https://httpbin2.org
+      timeout: 1000
+      header:
+        User-Agent: custom_agent
+        Content-Type: custom_content_type
+      transport:
+        max_idle_conns: 1
+        max_idle_conns_per_host: 2
+        max_conns_per_host: 3
+        idle_conn_timeout: 1s
+        tls_handshake_timeout: 2s
+        expect_continue_timeout: 3s
+        response_header_timeout: 4s
+        dial:
+          timeout: 5s
+          keep_alive: 6s
