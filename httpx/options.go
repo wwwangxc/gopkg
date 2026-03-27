@@ -355,7 +355,7 @@ func (s *requestOption) AllowMethodGetPayload() RequestOption {
 func (s *requestOption) AllowMethodDeletePayload() RequestOption {
 	return func(r *resty.Request) {
 		if r != nil {
-			r.SetAllowMethodGetPayload(true)
+			r.SetAllowMethodDeletePayload(true)
 		}
 	}
 }
