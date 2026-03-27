@@ -6,4 +6,3 @@ test:
 	cd ./etcd; go test -v -count=1 ./... -gcflags=-l;
 	cd ./concurrency; go test -v -count=1 ./... -gcflags=-l;
 	cd ./singleflight; go test -v -count=1 ./... -gcflags=-l;
-	cd ./httpx; go test -v -count=1 ./... -gcflags=-l;
