@@ -13,7 +13,7 @@ import (
 
 var (
 	serviceConfigMap = map[string]serviceConfig{}
-	serviceConfigMu  sync.Mutex
+	serviceConfigRW  sync.RWMutex
 )
 
 func init() {
@@ -127,23 +127,30 @@ func loadAppConfig(path string) (*appConfig, error) {
 }
 
 func registerServiceConfig(c serviceConfig) {
-	serviceConfigMu.Lock()
-	defer serviceConfigMu.Unlock()
+	serviceConfigRW.Lock()
+	defer serviceConfigRW.Unlock()
 	serviceConfigMap[c.Name] = c
 }
 
 func getServiceConfig(name string) serviceConfig {
-	serviceConfigMu.Lock()
-	defer serviceConfigMu.Unlock()
+	serviceConfigRW.RLock()
+	if c, exist := serviceConfigMap[name]; exist {
+		serviceConfigRW.RUnlock()
+		return c
+	}
+	serviceConfigRW.RUnlock()
 
-	c, exist := serviceConfigMap[name]
-	if !exist {
-		c = serviceConfig{
-			Name:   name,
-			Driver: "mysql",
-		}
-		serviceConfigMap[name] = c
+	serviceConfigRW.Lock()
+	defer serviceConfigRW.Unlock()
+
+	if c, exist := serviceConfigMap[name]; exist {
+		return c
 	}
 
+	c := serviceConfig{
+		Name:   name,
+		Driver: "mysql",
+	}
+	serviceConfigMap[name] = c
 	return c
 }
