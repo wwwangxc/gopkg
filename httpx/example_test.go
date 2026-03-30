@@ -72,8 +72,10 @@ func ExampleClientProxy_Do() {
 	//		- [RetryWaitGetter]                       // set the default wait time for sleep before retrying
 	//		- [RetryHooksGetter]                      // set retry hooks
 	//		- [AllowResponseBodyUnlimitedReadsGetter] // enable the response body in memory that provides an ability to do unlimited reads.
-	//		- [AllowMethodGetPayloadGetter]           // allows the GET method with payload on the Resty client.
-	//		- [AllowMethodDeletePayloadGetter]        // allows the DELETE method with payload on the Resty client.
+	//		- [AllowMethodGetPayloadGetter]           // allows the GET method with payload.
+	//		- [AllowMethodDeletePayloadGetter]        // allows the DELETE method with payload.
+	//		- [DebugGetter]                           // enable debug mode.
+	//		- [TraceGetter]                           // enable trace for current request.
 	type MyRequest struct {
 		httpx.RequestProtocol // must implement [httpx.RequestProtocol]
 	}
@@ -111,6 +113,8 @@ func ExampleClientProxy_Get() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request
@@ -140,6 +144,8 @@ func ExampleClientProxy_Head() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request
@@ -169,6 +175,8 @@ func ExampleClientProxy_Post() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request
@@ -198,6 +206,8 @@ func ExampleClientProxy_Put() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request
@@ -227,6 +237,8 @@ func ExampleClientProxy_Delete() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request
@@ -256,6 +268,8 @@ func ExampleClientProxy_Options() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request
@@ -285,6 +299,8 @@ func ExampleClientProxy_Patch() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request

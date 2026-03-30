@@ -44,6 +44,8 @@ Required go1.23
           - [AllowResponseBodyUnlimitedReadsGetter](#allowresponsebodyunlimitedreadsgetter)
           - [AllowMethodGetPayloadGetter](#allowmethodgetpayloadgetter)
           - [AllowMethodDeletePayloadGetter](#allowmethoddeletepayloadgetter)
+          - [DebugGetter](#debuggetter)
+          - [TraceGetter](#tracegetter)
     - [How To Mock](#how-to-mock)
 
 ## Install
@@ -221,8 +223,10 @@ func Example() {
 //		- [RetryWaitGetter]                       // set the default wait time for sleep before retrying
 //		- [RetryHooksGetter]                      // set retry hooks
 //		- [AllowResponseBodyUnlimitedReadsGetter] // enable the response body in memory that provides an ability to do unlimited reads.
-//		- [AllowMethodGetPayloadGetter]           // allows the GET method with payload on the Resty client.
-//		- [AllowMethodDeletePayloadGetter]        // allows the DELETE method with payload on the Resty client.
+//		- [AllowMethodGetPayloadGetter]           // allows the GET method with payload.
+//		- [AllowMethodDeletePayloadGetter]        // allows the DELETE method with payload.
+//		- [DebugGetter]                           // enable debug mode.
+//		- [TraceGetter]                           // enable trace for current request.
 type MyRequest struct{}
 
 func (s *MyRequest) Host() string {
@@ -355,6 +359,8 @@ func Example() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request
@@ -404,6 +410,8 @@ func Example() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request
@@ -453,6 +461,8 @@ func Example() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request
@@ -502,6 +512,8 @@ func Example() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request
@@ -551,6 +563,8 @@ func Example() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request
@@ -600,6 +614,8 @@ func Example() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request
@@ -649,6 +665,8 @@ func Example() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithDebug(),
+		httpx.R.WithTrace(),
 	}
 
 	// Send request
@@ -684,8 +702,10 @@ func Example() {
 //		- [RetryWaitGetter]                       // set the default wait time for sleep before retrying
 //		- [RetryHooksGetter]                      // set retry hooks
 //		- [AllowResponseBodyUnlimitedReadsGetter] // enable the response body in memory that provides an ability to do unlimited reads.
-//		- [AllowMethodGetPayloadGetter]           // allows the GET method with payload on the Resty client.
-//		- [AllowMethodDeletePayloadGetter]        // allows the DELETE method with payload on the Resty client.
+//		- [AllowMethodGetPayloadGetter]           // allows the GET method with payload.
+//		- [AllowMethodDeletePayloadGetter]        // allows the DELETE method with payload.
+//		- [DebugGetter]                           // enable debug mode.
+//		- [TraceGetter]                           // enable trace for current request.
 type RequestProtocol interface {
 	Host() string
 	Path() string
@@ -1080,6 +1100,41 @@ type AllowMethodGetPayloadGetter interface{ AllowMethodGetPayload() }
 //
 //	func (s *MyRequest) AllowMethodDeletePayloadGetter() {}
 type AllowMethodDeletePayloadGetter interface{ AllowMethodDeletePayload() }
+```
+
+**[⬆ back to top](#contents)**
+
+#### DebugGetter
+
+```go
+// DebugGetter return nothing
+//
+// Implement this interface will enables the debug mode on the current request. It logs
+// the details current request and response.
+//
+// Usage Example:
+//
+//	type MyRequest struct{}
+//
+//	func (s *MyRequest) Debug() {}
+type DebugGetter interface{ Debug() }
+```
+
+**[⬆ back to top](#contents)**
+
+#### TraceGetter
+
+```go
+// TraceGetter return nothing
+//
+// Implement this interface will enables trace for the current request.
+//
+// Usage Example:
+//
+//	type MyRequest struct{}
+//
+//	func (s *MyRequest) Trace() {}
+type TraceGetter interface{ Trace() }
 ```
 
 **[⬆ back to top](#contents)**
