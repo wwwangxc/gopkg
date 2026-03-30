@@ -31,8 +31,10 @@ import (
 //		- [RetryWaitGetter]                       // set the default wait time for sleep before retrying
 //		- [RetryHooksGetter]                      // set retry hooks
 //		- [AllowResponseBodyUnlimitedReadsGetter] // enable the response body in memory that provides an ability to do unlimited reads.
-//		- [AllowMethodGetPayloadGetter]           // allows the GET method with payload on the Resty client.
-//		- [AllowMethodDeletePayloadGetter]        // allows the DELETE method with payload on the Resty client.
+//		- [AllowMethodGetPayloadGetter]           // allows the GET method with payload.
+//		- [AllowMethodDeletePayloadGetter]        // allows the DELETE method with payload.
+//		- [DebugGetter]                           // enable debug mode.
+//		- [TraceGetter]                           // enable trace for current request.
 type RequestProtocol interface {
 	Host() string
 	Path() string
@@ -326,6 +328,29 @@ type AllowMethodGetPayloadGetter interface{ AllowMethodGetPayload() }
 //	func (s *MyRequest) AllowMethodDeletePayloadGetter() {}
 type AllowMethodDeletePayloadGetter interface{ AllowMethodDeletePayload() }
 
+// DebugGetter return nothing
+//
+// Implement this interface will enables the debug mode on the current request. It logs
+// the details current request and response.
+//
+// Usage Example:
+//
+//	type MyRequest struct{}
+//
+//	func (s *MyRequest) Debug() {}
+type DebugGetter interface{ Debug() }
+
+// TraceGetter return nothing
+//
+// Implement this interface will enables trace for the current request.
+//
+// Usage Example:
+//
+//	type MyRequest struct{}
+//
+//	func (s *MyRequest) Trace() {}
+type TraceGetter interface{ Trace() }
+
 func checkRequestProtocol(proto RequestProtocol) error {
 	switch {
 	case proto == nil:
@@ -368,6 +393,7 @@ func protocolToOptions(ctx context.Context, proto RequestProtocol) []RequestOpti
 	opts = append(opts, protocolToTimeoutOptions(ctx, proto)...)
 	opts = append(opts, protocolToRetryOptions(ctx, proto)...)
 	opts = append(opts, protocolToSecurityOptions(ctx, proto)...)
+	opts = append(opts, protocolToDebugOptions(ctx, proto)...)
 
 	return opts
 }
@@ -515,6 +541,24 @@ func protocolToSecurityOptions(_ context.Context, proto RequestProtocol) []Reque
 
 	if _, ok := proto.(AllowMethodDeletePayloadGetter); ok {
 		opts = append(opts, R.AllowMethodDeletePayload())
+	}
+
+	return opts
+}
+
+func protocolToDebugOptions(_ context.Context, proto RequestProtocol) []RequestOption {
+	if proto == nil {
+		return nil
+	}
+
+	var opts []RequestOption
+
+	if _, ok := proto.(DebugGetter); ok {
+		opts = append(opts, R.WithDebug())
+	}
+
+	if _, ok := proto.(TraceGetter); ok {
+		opts = append(opts, R.WithTrace())
 	}
 
 	return opts

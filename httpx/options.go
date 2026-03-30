@@ -359,3 +359,22 @@ func (s *requestOption) AllowMethodDeletePayload() RequestOption {
 		}
 	}
 }
+
+// WithDebug enables the debug mode on the current request. It logs
+// the details current request and response.
+func (s *requestOption) WithDebug() RequestOption {
+	return func(r *resty.Request) {
+		if r != nil {
+			r.EnableDebug()
+		}
+	}
+}
+
+// WithTrace enables trace for the current request
+func (s *requestOption) WithTrace() RequestOption {
+	return func(r *resty.Request) {
+		if r != nil {
+			r.EnableTrace()
+		}
+	}
+}
