@@ -378,3 +378,23 @@ func (s *requestOption) WithTrace() RequestOption {
 		}
 	}
 }
+
+// WithExpectResponseContentType method allows to provide fallback `Content-Type`
+// for automatic unmarshalling when the `Content-Type` response header is unavailable.
+func (s *requestOption) WithExpectResponseContentType(contentType string) RequestOption {
+	return func(r *resty.Request) {
+		r.SetExpectResponseContentType(contentType)
+	}
+}
+
+// WithForceResponseContentType method provides a strong sense of response `Content-Type` for
+// automatic unmarshalling. Resty gives this a higher priority than the `Content-Type`
+// response header.
+//
+// This means that if both [WithForceResponseContentType] is set and
+// the response `Content-Type` is available, `WithForceResponseContentType` value will win.
+func (s *requestOption) WithForceResponseContentType(contentType string) RequestOption {
+	return func(r *resty.Request) {
+		r.SetForceResponseContentType(contentType)
+	}
+}
