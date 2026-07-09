@@ -27,6 +27,7 @@ Required go1.23
           - [Options](#options)
           - [Patch](#patch)
       - [RequestProtocol](#requestprotocol)
+          - [RequestChecker](#requestchecker)
           - [MethodGetter](#methodgetter)
           - [BasicAuthGetter](#basicauthgetter)
           - [BearerTokenAuthGetter](#bearertokenauthgetter)
@@ -46,6 +47,8 @@ Required go1.23
           - [AllowMethodDeletePayloadGetter](#allowmethoddeletepayloadgetter)
           - [DebugGetter](#debuggetter)
           - [TraceGetter](#tracegetter)
+          - [ExpectResponseContentTypeGetter](#expectresponsecontenttypegetter)
+          - [ForceResponseContentTypeGetter](#forceresponsecontenttypegetter)
     - [How To Mock](#how-to-mock)
 
 ## Install
@@ -206,8 +209,9 @@ func Example() {
 // By implementing the appropriate Getter interface for the request protocol,
 // various options in the request can be set automatically.
 //
-//	Support getter:
+//	Support checker && getter:
 //
+//		- [RequestChecker]                        // check current request.
 //		- [MethodGetter]                          // sets the http method
 //		- [BasicAuthGetter]                       // sets the basic authentication header
 //		- [BearerTokenAuthGetter]                 // sets the auth token header
@@ -227,6 +231,8 @@ func Example() {
 //		- [AllowMethodDeletePayloadGetter]        // allows the DELETE method with payload.
 //		- [DebugGetter]                           // enable debug mode.
 //		- [TraceGetter]                           // enable trace for current request.
+//		- [ExpectResponseContentTypeGetter]       // set fallback `Content-Type`.
+//		- [ForceResponseContentTypeGetter]        // set force response `Content-Type`.
 type MyRequest struct{}
 
 func (s *MyRequest) Host() string {
@@ -235,6 +241,13 @@ func (s *MyRequest) Host() string {
 
 func (s *MyRequest) Path() string {
 	return "/anything"
+}
+
+func (s *MyRequest) Check() error {
+	if s == nil {
+		return fmt.Error("invalid request")
+	}
+	return nil
 }
 
 func (s *MyRequest) AllowResponseBodyUnlimitedReads() {}
@@ -315,6 +328,14 @@ func (s *MyRequest) RetryHooks(ctx context.Context) []resty.RetryHookFunc {
 	return []resty.RetryHookFunc{
 		func(r *resty.Response, err error) { fmt.Println("retry once") },
 	}
+}
+
+func (s *MyRequest) ExpectResponseContentType() string {
+    return "application/json"
+}
+
+func (s *MyRequest) ForceResponseContentType() string {
+    return "application/json"
 }
 ```
 
@@ -685,8 +706,9 @@ func Example() {
 // By implementing the appropriate Getter interface for the request protocol,
 // various options in the request can be set automatically.
 //
-//	Support getter:
+//	Support checker && getter:
 //
+//		- [RequestChecker]                        // check current request.
 //		- [MethodGetter]                          // sets the http method
 //		- [BasicAuthGetter]                       // sets the basic authentication header
 //		- [BearerTokenAuthGetter]                 // sets the auth token header
@@ -706,10 +728,34 @@ func Example() {
 //		- [AllowMethodDeletePayloadGetter]        // allows the DELETE method with payload.
 //		- [DebugGetter]                           // enable debug mode.
 //		- [TraceGetter]                           // enable trace for current request.
+//		- [ExpectResponseContentTypeGetter]       // set fallback `Content-Type`.
+//		- [ForceResponseContentTypeGetter]        // set force response `Content-Type`.
 type RequestProtocol interface {
 	Host() string
 	Path() string
 }
+```
+
+**[⬆ back to top](#contents)**
+
+#### RequestChecker
+
+```go
+// RequestChecker check current request
+//
+// Implement this interface to automatically check current HTTP request.
+//
+// Usage Example:
+//
+//	type MyRequest struct{}
+//
+//	func (s *MyRequest) Check() error {
+//		if s == nil {
+//			return fmt.Error("invalid request")
+//		}
+//		return nil
+//	}
+type RequestChecker interface{ Check() error }
 ```
 
 **[⬆ back to top](#contents)**
@@ -1135,6 +1181,45 @@ type DebugGetter interface{ Debug() }
 //
 //	func (s *MyRequest) Trace() {}
 type TraceGetter interface{ Trace() }
+```
+
+**[⬆ back to top](#contents)**
+
+#### ExpectResponseContentTypeGetter
+
+```go
+// ExpectResponseContentTypeGetter returns fallback `Content-Type`
+//
+// Implement this interface to automatically set the fallback `Content-Type` for automatic unmarshalling when
+// the `Content-Type` response header is unavailable.
+//
+// Usage Example:
+//
+//	type MyRequest struct{}
+//
+//	func (s *MyRequest) ExpectResponseContentType() string {
+//		return "application/json"
+//	}
+type ExpectResponseContentTypeGetter interface{ ExpectResponseContentType() string }
+```
+
+**[⬆ back to top](#contents)**
+
+#### ForceResponseContentTypeGetter
+
+```go
+// ForceResponseContentTypeGetter returns force `Content-Type`
+//
+// Implement this interface to automatically set the force response `Content-Type` for the current HTTP request.
+//
+// Usage Example:
+//
+//	type MyRequest struct{}
+//
+//	func (s *MyRequest) ForceResponseContentType() string {
+//		return "application/json"
+//	}
+type ForceResponseContentTypeGetter interface{ ForceResponseContentType() string }
 ```
 
 **[⬆ back to top](#contents)**

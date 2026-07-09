@@ -14,8 +14,9 @@ import (
 // By implementing the appropriate Getter interface for the request protocol,
 // various options in the request can be set automatically.
 //
-//	Support getter:
+//	Support checker && getter:
 //
+//		- [RequestChecker]                        // check current request.
 //		- [MethodGetter]                          // sets the http method
 //		- [BasicAuthGetter]                       // sets the basic authentication header
 //		- [BearerTokenAuthGetter]                 // sets the auth token header
@@ -35,10 +36,28 @@ import (
 //		- [AllowMethodDeletePayloadGetter]        // allows the DELETE method with payload.
 //		- [DebugGetter]                           // enable debug mode.
 //		- [TraceGetter]                           // enable trace for current request.
+//		- [ExpectResponseContentTypeGetter]       // set fallback `Content-Type`.
+//		- [ForceResponseContentTypeGetter]        // set force response `Content-Type`.
 type RequestProtocol interface {
 	Host() string
 	Path() string
 }
+
+// RequestChecker check current request
+//
+// Implement this interface to automatically check current HTTP request.
+//
+// Usage Example:
+//
+//	type MyRequest struct{}
+//
+//	func (s *MyRequest) Check() error {
+//		if s == nil {
+//			return fmt.Error("invalid request")
+//		}
+//		return nil
+//	}
+type RequestChecker interface{ Check() error }
 
 // MethodGetter returns http method
 //
@@ -351,14 +370,44 @@ type DebugGetter interface{ Debug() }
 //	func (s *MyRequest) Trace() {}
 type TraceGetter interface{ Trace() }
 
-func checkRequestProtocol(proto RequestProtocol) error {
-	switch {
-	case proto == nil:
-		return fmt.Errorf("request protocol is nil")
-	case proto.Host() == "":
-		return fmt.Errorf("request host is empty")
+// ExpectResponseContentTypeGetter returns fallback `Content-Type`
+//
+// Implement this interface to automatically set the fallback `Content-Type` for automatic unmarshalling when
+// the `Content-Type` response header is unavailable.
+//
+// Usage Example:
+//
+//	type MyRequest struct{}
+//
+//	func (s *MyRequest) ExpectResponseContentType() string {
+//		return "application/json"
+//	}
+type ExpectResponseContentTypeGetter interface{ ExpectResponseContentType() string }
 
-	default:
+// ForceResponseContentTypeGetter returns force `Content-Type`
+//
+// Implement this interface to automatically set the force response `Content-Type` for the current HTTP request.
+//
+// Usage Example:
+//
+//	type MyRequest struct{}
+//
+//	func (s *MyRequest) ForceResponseContentType() string {
+//		return "application/json"
+//	}
+type ForceResponseContentTypeGetter interface{ ForceResponseContentType() string }
+
+func checkRequestProtocol(proto RequestProtocol) error {
+	if proto == nil {
+		return fmt.Errorf("request protocol is nil")
+	}
+
+	if proto.Host() == "" {
+		return fmt.Errorf("request host is empty")
+	}
+
+	if checker, ok := proto.(RequestChecker); ok {
+		return checker.Check()
 	}
 
 	return nil
@@ -541,6 +590,14 @@ func protocolToSecurityOptions(_ context.Context, proto RequestProtocol) []Reque
 
 	if _, ok := proto.(AllowMethodDeletePayloadGetter); ok {
 		opts = append(opts, R.AllowMethodDeletePayload())
+	}
+
+	if getter, ok := proto.(ExpectResponseContentTypeGetter); ok {
+		opts = append(opts, R.WithExpectResponseContentType(getter.ExpectResponseContentType()))
+	}
+
+	if getter, ok := proto.(ForceResponseContentTypeGetter); ok {
+		opts = append(opts, R.WithForceResponseContentType(getter.ForceResponseContentType()))
 	}
 
 	return opts

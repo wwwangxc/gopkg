@@ -55,8 +55,9 @@ func ExampleClientProxy_Do() {
 	// By implementing the appropriate Getter interface for the request protocol,
 	// various options in the request can be set automatically.
 	//
-	//	Support getter:
+	//	Support checker && getter:
 	//
+	//		- [RequestChecker]                        // check current request.
 	//		- [MethodGetter]                          // sets the http method
 	//		- [BasicAuthGetter]                       // sets the basic authentication header
 	//		- [BearerTokenAuthGetter]                 // sets the auth token header
@@ -76,6 +77,8 @@ func ExampleClientProxy_Do() {
 	//		- [AllowMethodDeletePayloadGetter]        // allows the DELETE method with payload.
 	//		- [DebugGetter]                           // enable debug mode.
 	//		- [TraceGetter]                           // enable trace for current request.
+	//		- [ExpectResponseContentTypeGetter]       // set fallback `Content-Type`.
+	//		- [ForceResponseContentTypeGetter]        // set force response `Content-Type`.
 	type MyRequest struct {
 		httpx.RequestProtocol // must implement [httpx.RequestProtocol]
 	}
@@ -115,6 +118,8 @@ func ExampleClientProxy_Get() {
 		httpx.R.AllowMethodDeletePayload(),
 		httpx.R.WithDebug(),
 		httpx.R.WithTrace(),
+		httpx.R.WithExpectResponseContentType("application/json"),
+		httpx.R.WithForceResponseContentType("application/json"),
 	}
 
 	// Send request
@@ -146,6 +151,8 @@ func ExampleClientProxy_Head() {
 		httpx.R.AllowMethodDeletePayload(),
 		httpx.R.WithDebug(),
 		httpx.R.WithTrace(),
+		httpx.R.WithExpectResponseContentType("application/json"),
+		httpx.R.WithForceResponseContentType("application/json"),
 	}
 
 	// Send request
@@ -177,6 +184,8 @@ func ExampleClientProxy_Post() {
 		httpx.R.AllowMethodDeletePayload(),
 		httpx.R.WithDebug(),
 		httpx.R.WithTrace(),
+		httpx.R.WithExpectResponseContentType("application/json"),
+		httpx.R.WithForceResponseContentType("application/json"),
 	}
 
 	// Send request
@@ -208,6 +217,8 @@ func ExampleClientProxy_Put() {
 		httpx.R.AllowMethodDeletePayload(),
 		httpx.R.WithDebug(),
 		httpx.R.WithTrace(),
+		httpx.R.WithExpectResponseContentType("application/json"),
+		httpx.R.WithForceResponseContentType("application/json"),
 	}
 
 	// Send request
@@ -239,6 +250,8 @@ func ExampleClientProxy_Delete() {
 		httpx.R.AllowMethodDeletePayload(),
 		httpx.R.WithDebug(),
 		httpx.R.WithTrace(),
+		httpx.R.WithExpectResponseContentType("application/json"),
+		httpx.R.WithForceResponseContentType("application/json"),
 	}
 
 	// Send request
@@ -270,6 +283,8 @@ func ExampleClientProxy_Options() {
 		httpx.R.AllowMethodDeletePayload(),
 		httpx.R.WithDebug(),
 		httpx.R.WithTrace(),
+		httpx.R.WithExpectResponseContentType("application/json"),
+		httpx.R.WithForceResponseContentType("application/json"),
 	}
 
 	// Send request
@@ -301,6 +316,8 @@ func ExampleClientProxy_Patch() {
 		httpx.R.AllowMethodDeletePayload(),
 		httpx.R.WithDebug(),
 		httpx.R.WithTrace(),
+		httpx.R.WithExpectResponseContentType("application/json"),
+		httpx.R.WithForceResponseContentType("application/json"),
 	}
 
 	// Send request
