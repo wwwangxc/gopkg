@@ -418,10 +418,7 @@ func buildRequest(ctx context.Context, cli *resty.Client, opts ...RequestOption)
 		return nil, fmt.Errorf("client proxy is nil")
 	}
 
-	r := cli.R().
-		SetContext(ctx).
-		SetExpectResponseContentType("application/json;charset=utf-8")
-
+	r := cli.R().SetContext(ctx)
 	for _, opt := range opts {
 		opt(r)
 	}

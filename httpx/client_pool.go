@@ -52,7 +52,27 @@ func newClient(name string, opts ...ClientOption) *resty.Client {
 		cli = cli.SetLoadBalancer(rr)
 	}
 
-	for _, opt := range opts {
+	optList := make([]ClientOption, 0, len(opts)+5)
+	if opt := config.Option; opt != nil {
+		if opt.Trace {
+			optList = append(optList, C.WithTrace())
+		}
+
+		if opt.Debug {
+			optList = append(optList, C.WithDebug())
+		}
+
+		if opt.AllowMethodGetPayload {
+			optList = append(optList, C.WithAllowMethodGetPayload())
+		}
+
+		if opt.AllowMethodDeletePayload {
+			optList = append(optList, C.WithAllowMethodDeletePayload())
+		}
+	}
+
+	optList = append(optList, opts...)
+	for _, opt := range optList {
 		opt(cli)
 	}
 

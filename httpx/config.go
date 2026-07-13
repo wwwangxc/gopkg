@@ -1,6 +1,7 @@
 package httpx
 
 import (
+	"cmp"
 	"fmt"
 	"net"
 	"net/http"
@@ -69,13 +70,16 @@ func (a *appConfig) registerClientConfig() {
 			v.httpConfig.Header = a.Client.HTTPCfg.Header
 		}
 
-		if v.httpConfig.TransportCfg == nil {
-			v.httpConfig.TransportCfg = a.Client.HTTPCfg.TransportCfg
-		}
+		v.httpConfig.TransportCfg = cmp.Or(
+			v.httpConfig.TransportCfg,
+			a.Client.HTTPCfg.TransportCfg,
+			httpConfigDefault.TransportCfg,
+		)
 
-		if v.httpConfig.TransportCfg == nil {
-			v.httpConfig.TransportCfg = httpConfigDefault.TransportCfg
-		}
+		v.httpConfig.Option = cmp.Or(
+			v.httpConfig.Option,
+			a.Client.HTTPCfg.Option,
+		)
 
 		registerClientConfig(v)
 	}
@@ -107,6 +111,7 @@ func defaultClientConfig(name string) clientConfig {
 type httpConfig struct {
 	Header       map[string]string    `yaml:"header"`
 	TransportCfg *httpTransportConfig `yaml:"transport"`
+	Option       *httpOptionConfig    `yaml:"option"`
 }
 
 func defaultHTTPConfig() httpConfig {
@@ -173,6 +178,13 @@ func defaultHTTPTransportConfig() httpTransportConfig {
 			KeepAlive: 30 * time.Second,
 		},
 	}
+}
+
+type httpOptionConfig struct {
+	Trace                    bool `yaml:"trace"`
+	Debug                    bool `yaml:"debug"`
+	AllowMethodGetPayload    bool `yaml:"allow_method_get_payload"`
+	AllowMethodDeletePayload bool `yaml:"allow_method_delete_payload"`
 }
 
 func registerClientConfig(c clientConfig) {
