@@ -16,7 +16,7 @@ func TestInit(t *testing.T) {
 				assert.True(t, ok)
 				assert.Equal(t, "http1", c.Name)
 				assert.Equal(t, "https://httpbin.org", c.DSN)
-				assert.Equal(t, int64(3000), c.Timeout)
+				assert.Equal(t, 3*time.Second, c.Timeout)
 
 				userAgent, ok := c.Header["User-Agent"]
 				assert.True(t, ok)
@@ -35,8 +35,15 @@ func TestInit(t *testing.T) {
 				assert.Equal(t, 3*time.Second, transport.TLSHandshakeTimeout)
 				assert.Equal(t, time.Second, transport.ExpectContinueTimeout)
 				assert.Equal(t, 5*time.Second, transport.ResponseHeaderTimeout)
-				assert.NotNil(t, 3*time.Second, transport.Dial.Timeout)
-				assert.NotNil(t, 30*time.Second, transport.Dial.KeepAlive)
+				assert.Equal(t, 3*time.Second, transport.Dial.Timeout)
+				assert.Equal(t, 30*time.Second, transport.Dial.KeepAlive)
+
+				option := c.Option
+				assert.NotNil(t, option)
+				assert.True(t, option.Trace)
+				assert.True(t, option.Debug)
+				assert.True(t, option.AllowMethodGetPayload)
+				assert.True(t, option.AllowMethodDeletePayload)
 			})
 
 			c.Convey("With custom config", func() {
@@ -44,7 +51,7 @@ func TestInit(t *testing.T) {
 				assert.True(t, ok)
 				assert.Equal(t, "http2", c.Name)
 				assert.Equal(t, "https://httpbin1.org,https://httpbin2.org", c.DSN)
-				assert.Equal(t, int64(1000), c.Timeout)
+				assert.Equal(t, time.Second, c.Timeout)
 
 				userAgent, ok := c.Header["User-Agent"]
 				assert.True(t, ok)
@@ -65,6 +72,13 @@ func TestInit(t *testing.T) {
 				assert.Equal(t, 4*time.Second, transport.ResponseHeaderTimeout)
 				assert.NotNil(t, 5*time.Second, transport.Dial.Timeout)
 				assert.NotNil(t, 6*time.Second, transport.Dial.KeepAlive)
+
+				option := c.Option
+				assert.NotNil(t, option)
+				assert.False(t, option.Trace)
+				assert.False(t, option.Debug)
+				assert.False(t, option.AllowMethodGetPayload)
+				assert.False(t, option.AllowMethodDeletePayload)
 			})
 		})
 
@@ -77,7 +91,7 @@ func TestInit(t *testing.T) {
 					assert.True(t, ok)
 					assert.Equal(t, "httpA", c.Name)
 					assert.Equal(t, "https://httpbin.org", c.DSN)
-					assert.Equal(t, int64(3000), c.Timeout)
+					assert.Equal(t, 3*time.Second, c.Timeout)
 
 					userAgent, ok := c.Header["User-Agent"]
 					assert.True(t, ok)
@@ -98,6 +112,13 @@ func TestInit(t *testing.T) {
 					assert.Equal(t, 4*time.Second, transport.ResponseHeaderTimeout)
 					assert.NotNil(t, 5*time.Second, transport.Dial.Timeout)
 					assert.NotNil(t, 6*time.Second, transport.Dial.KeepAlive)
+
+					option := c.Option
+					assert.NotNil(t, option)
+					assert.True(t, option.Trace)
+					assert.True(t, option.Debug)
+					assert.True(t, option.AllowMethodGetPayload)
+					assert.True(t, option.AllowMethodDeletePayload)
 				})
 
 				c.Convey("With custom config", func() {
@@ -105,7 +126,7 @@ func TestInit(t *testing.T) {
 					assert.True(t, ok)
 					assert.Equal(t, "httpB", c.Name)
 					assert.Equal(t, "https://httpbin1.org,https://httpbin2.org", c.DSN)
-					assert.Equal(t, int64(1000), c.Timeout)
+					assert.Equal(t, time.Second, c.Timeout)
 
 					userAgent, ok := c.Header["User-Agent"]
 					assert.True(t, ok)
@@ -126,6 +147,13 @@ func TestInit(t *testing.T) {
 					assert.Equal(t, 3*time.Second, transport.ResponseHeaderTimeout)
 					assert.NotNil(t, 2*time.Second, transport.Dial.Timeout)
 					assert.NotNil(t, 1*time.Second, transport.Dial.KeepAlive)
+
+					option := c.Option
+					assert.NotNil(t, option)
+					assert.False(t, option.Trace)
+					assert.False(t, option.Debug)
+					assert.False(t, option.AllowMethodGetPayload)
+					assert.False(t, option.AllowMethodDeletePayload)
 				})
 			})
 		})

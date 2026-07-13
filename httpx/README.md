@@ -108,13 +108,18 @@ client:
       dial:
         timeout: 3s
         keep_alive: 30s
+    option:
+      trace: true
+      debug: true
+      allow_method_get_payload: true
+      allow_method_delete_payload: true
   service:
     - name: http1
       dsn: https://httpbin.org
-      timeout: 3000
+      timeout: 3s
     - name: http2
       dsn: https://httpbin1.org,https://httpbin2.org
-      timeout: 1000
+      timeout: 1s
       header:
         User-Agent: custom_agent
         Content-Type: custom_content_type
@@ -129,6 +134,11 @@ client:
         dial:
           timeout: 5s
           keep_alive: 6s
+      option:
+        trace: false
+        debug: false
+        allow_method_get_payload: false
+        allow_method_delete_payload: false
 ```
 
 **[⬆ back to top](#contents)**
