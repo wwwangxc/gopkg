@@ -17,10 +17,10 @@ client:
   service:
     - name: httpA
       dsn: https://httpbin.org
-      timeout: 3000
+      timeout: 3s
     - name: httpB
       dsn: https://httpbin1.org,https://httpbin2.org
-      timeout: 1000
+      timeout: 1s
       header:
         User-Agent: agent_custom
         Content-Type: content_type_custom

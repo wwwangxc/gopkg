@@ -16,7 +16,7 @@ func TestInit(t *testing.T) {
 				assert.True(t, ok)
 				assert.Equal(t, "http1", c.Name)
 				assert.Equal(t, "https://httpbin.org", c.DSN)
-				assert.Equal(t, int64(3000), c.Timeout)
+				assert.Equal(t, 3*time.Second, c.Timeout)
 
 				userAgent, ok := c.Header["User-Agent"]
 				assert.True(t, ok)
@@ -44,7 +44,7 @@ func TestInit(t *testing.T) {
 				assert.True(t, ok)
 				assert.Equal(t, "http2", c.Name)
 				assert.Equal(t, "https://httpbin1.org,https://httpbin2.org", c.DSN)
-				assert.Equal(t, int64(1000), c.Timeout)
+				assert.Equal(t, time.Second, c.Timeout)
 
 				userAgent, ok := c.Header["User-Agent"]
 				assert.True(t, ok)
@@ -77,7 +77,7 @@ func TestInit(t *testing.T) {
 					assert.True(t, ok)
 					assert.Equal(t, "httpA", c.Name)
 					assert.Equal(t, "https://httpbin.org", c.DSN)
-					assert.Equal(t, int64(3000), c.Timeout)
+					assert.Equal(t, 3*time.Second, c.Timeout)
 
 					userAgent, ok := c.Header["User-Agent"]
 					assert.True(t, ok)
@@ -105,7 +105,7 @@ func TestInit(t *testing.T) {
 					assert.True(t, ok)
 					assert.Equal(t, "httpB", c.Name)
 					assert.Equal(t, "https://httpbin1.org,https://httpbin2.org", c.DSN)
-					assert.Equal(t, int64(1000), c.Timeout)
+					assert.Equal(t, time.Second, c.Timeout)
 
 					userAgent, ok := c.Header["User-Agent"]
 					assert.True(t, ok)

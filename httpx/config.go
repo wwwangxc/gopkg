@@ -82,9 +82,9 @@ func (a *appConfig) registerClientConfig() {
 }
 
 type clientConfig struct {
-	Name    string `yaml:"name"`
-	DSN     string `yaml:"dsn"`
-	Timeout int64  `yaml:"timeout"`
+	Name    string        `yaml:"name"`
+	DSN     string        `yaml:"dsn"`
+	Timeout time.Duration `yaml:"timeout"`
 
 	httpConfig `yaml:",inline"`
 }
@@ -99,7 +99,7 @@ func defaultClientConfig(name string) clientConfig {
 	return clientConfig{
 		Name:       name,
 		DSN:        "",
-		Timeout:    3000,
+		Timeout:    3 * time.Second,
 		httpConfig: defaultHTTPConfig(),
 	}
 }

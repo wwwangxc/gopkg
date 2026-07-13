@@ -3,7 +3,6 @@ package httpx
 import (
 	"strings"
 	"sync"
-	"time"
 
 	"resty.dev/v3"
 )
@@ -43,7 +42,7 @@ func newClient(name string, opts ...ClientOption) *resty.Client {
 
 	cli := resty.NewWithClient(config.toHTTPClient()).
 		SetHeaders(config.Header).
-		SetTimeout(time.Duration(config.Timeout) * time.Millisecond)
+		SetTimeout(config.Timeout)
 
 	if config.DSN != "" {
 		rr, err := resty.NewRoundRobin(strings.Split(config.DSN, ",")...)
