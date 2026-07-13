@@ -380,6 +380,8 @@ func Example() {
 		httpx.R.AllowResponseBodyUnlimitedReads(),
 		httpx.R.AllowMethodGetPayload(),
 		httpx.R.AllowMethodDeletePayload(),
+		httpx.R.WithExpectResponseContentType("application/json"),
+		httpx.R.WithForceResponseContentType("application/json"),
 		httpx.R.WithDebug(),
 		httpx.R.WithTrace(),
 	}
@@ -415,24 +417,7 @@ func Example() {
 
 	// Request supported options
 	requestOpts := []httpx.RequestOption{
-		httpx.R.WithBasicAuth("username", "password"),
-		httpx.R.WithBearerTokenAuth("token"),
-		httpx.R.WithCookies([]*http.Cookie{}...),
-		httpx.R.WithHeader(map[string]string{}),
-		httpx.R.WithPathParams(map[string]string{}),
-		httpx.R.WithQueryParams(map[string]string{}),
-		httpx.R.WithQueryString(""),
-		httpx.R.WithFormParams(map[string]string{}),
-		httpx.R.WithBody(map[string]any{}),
-		httpx.R.WithTimeout(3 * time.Second),
-		httpx.R.WithRetry(3, []resty.RetryConditionFunc{}...),
-		httpx.R.WithRetryWait(100 * time.Millisecond),
-		httpx.R.WithRetryHooks([]resty.RetryHookFunc{}...),
-		httpx.R.AllowResponseBodyUnlimitedReads(),
-		httpx.R.AllowMethodGetPayload(),
-		httpx.R.AllowMethodDeletePayload(),
-		httpx.R.WithDebug(),
-		httpx.R.WithTrace(),
+		...
 	}
 
 	// Send request
@@ -466,24 +451,7 @@ func Example() {
 
 	// Request supported options
 	requestOpts := []httpx.RequestOption{
-		httpx.R.WithBasicAuth("username", "password"),
-		httpx.R.WithBearerTokenAuth("token"),
-		httpx.R.WithCookies([]*http.Cookie{}...),
-		httpx.R.WithHeader(map[string]string{}),
-		httpx.R.WithPathParams(map[string]string{}),
-		httpx.R.WithQueryParams(map[string]string{}),
-		httpx.R.WithQueryString(""),
-		httpx.R.WithFormParams(map[string]string{}),
-		httpx.R.WithBody(map[string]any{}),
-		httpx.R.WithTimeout(3 * time.Second),
-		httpx.R.WithRetry(3, []resty.RetryConditionFunc{}...),
-		httpx.R.WithRetryWait(100 * time.Millisecond),
-		httpx.R.WithRetryHooks([]resty.RetryHookFunc{}...),
-		httpx.R.AllowResponseBodyUnlimitedReads(),
-		httpx.R.AllowMethodGetPayload(),
-		httpx.R.AllowMethodDeletePayload(),
-		httpx.R.WithDebug(),
-		httpx.R.WithTrace(),
+		...
 	}
 
 	// Send request
@@ -517,24 +485,7 @@ func Example() {
 
 	// Request supported options
 	requestOpts := []httpx.RequestOption{
-		httpx.R.WithBasicAuth("username", "password"),
-		httpx.R.WithBearerTokenAuth("token"),
-		httpx.R.WithCookies([]*http.Cookie{}...),
-		httpx.R.WithHeader(map[string]string{}),
-		httpx.R.WithPathParams(map[string]string{}),
-		httpx.R.WithQueryParams(map[string]string{}),
-		httpx.R.WithQueryString(""),
-		httpx.R.WithFormParams(map[string]string{}),
-		httpx.R.WithBody(map[string]any{}),
-		httpx.R.WithTimeout(3 * time.Second),
-		httpx.R.WithRetry(3, []resty.RetryConditionFunc{}...),
-		httpx.R.WithRetryWait(100 * time.Millisecond),
-		httpx.R.WithRetryHooks([]resty.RetryHookFunc{}...),
-		httpx.R.AllowResponseBodyUnlimitedReads(),
-		httpx.R.AllowMethodGetPayload(),
-		httpx.R.AllowMethodDeletePayload(),
-		httpx.R.WithDebug(),
-		httpx.R.WithTrace(),
+		...
 	}
 
 	// Send request
@@ -568,24 +519,7 @@ func Example() {
 
 	// Request supported options
 	requestOpts := []httpx.RequestOption{
-		httpx.R.WithBasicAuth("username", "password"),
-		httpx.R.WithBearerTokenAuth("token"),
-		httpx.R.WithCookies([]*http.Cookie{}...),
-		httpx.R.WithHeader(map[string]string{}),
-		httpx.R.WithPathParams(map[string]string{}),
-		httpx.R.WithQueryParams(map[string]string{}),
-		httpx.R.WithQueryString(""),
-		httpx.R.WithFormParams(map[string]string{}),
-		httpx.R.WithBody(map[string]any{}),
-		httpx.R.WithTimeout(3 * time.Second),
-		httpx.R.WithRetry(3, []resty.RetryConditionFunc{}...),
-		httpx.R.WithRetryWait(100 * time.Millisecond),
-		httpx.R.WithRetryHooks([]resty.RetryHookFunc{}...),
-		httpx.R.AllowResponseBodyUnlimitedReads(),
-		httpx.R.AllowMethodGetPayload(),
-		httpx.R.AllowMethodDeletePayload(),
-		httpx.R.WithDebug(),
-		httpx.R.WithTrace(),
+		...
 	}
 
 	// Send request
@@ -619,24 +553,7 @@ func Example() {
 
 	// Request supported options
 	requestOpts := []httpx.RequestOption{
-		httpx.R.WithBasicAuth("username", "password"),
-		httpx.R.WithBearerTokenAuth("token"),
-		httpx.R.WithCookies([]*http.Cookie{}...),
-		httpx.R.WithHeader(map[string]string{}),
-		httpx.R.WithPathParams(map[string]string{}),
-		httpx.R.WithQueryParams(map[string]string{}),
-		httpx.R.WithQueryString(""),
-		httpx.R.WithFormParams(map[string]string{}),
-		httpx.R.WithBody(map[string]any{}),
-		httpx.R.WithTimeout(3 * time.Second),
-		httpx.R.WithRetry(3, []resty.RetryConditionFunc{}...),
-		httpx.R.WithRetryWait(100 * time.Millisecond),
-		httpx.R.WithRetryHooks([]resty.RetryHookFunc{}...),
-		httpx.R.AllowResponseBodyUnlimitedReads(),
-		httpx.R.AllowMethodGetPayload(),
-		httpx.R.AllowMethodDeletePayload(),
-		httpx.R.WithDebug(),
-		httpx.R.WithTrace(),
+		...
 	}
 
 	// Send request
@@ -670,24 +587,7 @@ func Example() {
 
 	// Request supported options
 	requestOpts := []httpx.RequestOption{
-		httpx.R.WithBasicAuth("username", "password"),
-		httpx.R.WithBearerTokenAuth("token"),
-		httpx.R.WithCookies([]*http.Cookie{}...),
-		httpx.R.WithHeader(map[string]string{}),
-		httpx.R.WithPathParams(map[string]string{}),
-		httpx.R.WithQueryParams(map[string]string{}),
-		httpx.R.WithQueryString(""),
-		httpx.R.WithFormParams(map[string]string{}),
-		httpx.R.WithBody(map[string]any{}),
-		httpx.R.WithTimeout(3 * time.Second),
-		httpx.R.WithRetry(3, []resty.RetryConditionFunc{}...),
-		httpx.R.WithRetryWait(100 * time.Millisecond),
-		httpx.R.WithRetryHooks([]resty.RetryHookFunc{}...),
-		httpx.R.AllowResponseBodyUnlimitedReads(),
-		httpx.R.AllowMethodGetPayload(),
-		httpx.R.AllowMethodDeletePayload(),
-		httpx.R.WithDebug(),
-		httpx.R.WithTrace(),
+		...
 	}
 
 	// Send request
@@ -740,40 +640,52 @@ type RequestProtocol interface {
 
 #### RequestChecker
 
+Implement this interface will automatically check current HTTP request.
+
 ```go
-// RequestChecker check current request
-//
-// Implement this interface to automatically check current HTTP request.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) Check() error {
-//		if s == nil {
-//			return fmt.Error("invalid request")
-//		}
-//		return nil
-//	}
 type RequestChecker interface{ Check() error }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) Check() error {
+	if s == nil {
+		return fmt.Error("invalid request")
+	}
+	return nil
+}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### MethodGetter
 
+Implement this interface to set the method for current current HTTP request.
+
 ```go
-// MethodGetter returns http method
-//
-// Implement this interface to set the method for current current HTTP request.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) Method() { return http.MethodGet }
 type MethodGetter interface {
 	Method() string
+}
+```
+
+For example:
+
+```go
+package main
+
+import (
+	"net/http"
+)
+
+type MyRequest struct{}
+
+func (s *MyRequest) Method() string {
+	return http.MethodGet
 }
 ```
 
@@ -781,24 +693,23 @@ type MethodGetter interface {
 
 #### BasicAuthGetter
 
+Implement this interface to automatically set the Basic Authentication header in the current HTTP request.
+
 ```go
-// BasicAuth returns username & password in basic authentication
-//
-// Implement this interface to automatically set the Basic Authentication header in the current HTTP request.
-//
-// Header Format:
-//
-//	Authorization: Basic <base64-encoded-value>
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) BasicAuth() (username, password string) {
-//		return "username", "password"
-//	}
 type BasicAuthGetter interface {
 	BasicAuth() (username, password string)
+}
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) BasicAuth() (username string, password string) {
+	return "username", "password"
 }
 ```
 
@@ -806,237 +717,237 @@ type BasicAuthGetter interface {
 
 #### BearerTokenAuthGetter
 
+Implement this interface to automatically set the Bearer Authentication header in the current HTTP request.
+
 ```go
-// BearerTokenAuthGetter returns authentication token
-//
-// Implement this interface to automatically set the Bearer Authentication header in the current HTTP request.
-//
-// Header Format:
-//
-//	Authorization: Bearer <token>
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) BearerTokenAuth() string {
-//		return "token"
-//	}
 type BearerTokenAuthGetter interface{ BearerTokenAuth() string }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) BearerTokenAuth() string {
+	return "token"
+}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### CookieGetters
 
+Implement this interface to automatically append the cookies in the current HTTP request.
+
 ```go
-// CookieGetters returns the cookies of the current request
-//
-// Implement this interface to automatically append the cookies in the current HTTP request.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) Cookies() []*http.Cookie {
-//		return []*http.Cookie{}
-//	}
 type CookiesGetter interface{ Cookies() []*http.Cookie }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) Cookies() []*http.Cookie {
+	return []*http.Cookie{
+		{Name: "cookie_1"},
+		{Name: "cookie_2"},
+	}
+}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### HeaderGetter
 
+Implement this interface to automatically set headers in the current HTTP request.
+
 ```go
-// HeaderGetter returns the headers of the current request
-//
-// Implement this interface to automatically set headers in the current HTTP request.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) Header() map[string]string {
-//		return map[string]string{
-//			"Content-Type": "application/json;charset=UTF-8",
-//		}
-//	}
 type HeaderGetter interface{ Header() map[string]string }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) Header() map[string]string {
+	return map[string]string{
+		"Content-Type": "application/json",
+	}
+}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### PathParamsGetter
 
+Implement this interface to automatically set the parameters in the current HTTP request path.
+
 ```go
-// PathParamsGetter returns the parameters in the current request path
-//
-// Implement this interface to automatically set the parameters in the current HTTP request path.
-//
-// URL Format:
-//
-//	   Raw: /api/path/{params_name}
-//	Cooked: /api/path/666
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) PathParams() map[string]string {
-//		return map[string]string{
-//			"params_name": "666",
-//		}
-//	}
 type PathParamsGetter interface{ PathParams() map[string]string }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) PathParams() map[string]string {
+	return map[string]string{
+		"key": "value",
+	}
+}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### QueryParamsGetter
 
+Implement this interface to automatically set the query parameters in the current HTTP request.
+
 ```go
-// QueryParamsGetter returns the query parameters in the current request
-//
-// Implement this interface to automatically set the query parameters in the current HTTP request.
-//
-// URL Format:
-//
-//	/api/path?params_1=value_1&params_2=value_2
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) QueryParams() map[string]string {
-//		return map[string]string{
-//			"params_1": "value_1",
-//			"params_2": "value_2",
-//		}
-//	}
 type QueryParamsGetter interface{ QueryParams() map[string]string }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) QueryParams() map[string]string {
+	return map[string]string{
+		"key": "value",
+	}
+}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### QueryStringGetter
 
+Implement this interface to automatically set the query parameters string in the current HTTP request.
+
 ```go
-// QueryStringGetter returns the query parameters string in the current request
-//
-// Implement this interface to automatically set the query parameters string in the current HTTP request.
-//
-// URL Format:
-//
-//	/api/path?params_1=value_1&params_2=value_2
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) QueryString() string {
-//		return "params_1=value_1&params_2=value_2"
-//	}
 type QueryStringGetter interface{ QueryString() string }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) QueryString() string {
+	return "key_1=value_1&key_2=value_2"
+}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### FormParamsGetter
 
+Implement this interface to automatically set the form parameters in the current HTTP request.
+
 ```go
-// FormParamsGetter returns the form parameters in the current request
-//
-// Implement this interface to automatically set the form parameters in the current HTTP request.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) FormParams() map[string]string {
-//		return map[string]string{
-//			"params_name": "666",
-//		}
-//	}
 type FormParamsGetter interface{ FormParams() map[string]string }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) FormParams() map[string]string {
+	return map[string]string{
+		"key": "value",
+	}
+}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### BodyGetter
 
+Implement this interface to automatically set the body in the current HTTP request.
+
 ```go
-// BodyGetter returns the body in the current request
-//
-// Implement this interface to automatically set the body in the current HTTP request.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) Body() any {
-//		// support string
-//		return `{"params": "value"}`
-//
-//		// support []byte
-//		return []byte("This is my raw request")
-//
-//		// support map
-//		return map[string]any {
-//			"params": "value",
-//		}
-//
-//		// support struct
-//		return Request {
-//			Params: "value",
-//		}
-//	}
 type BodyGetter interface{ Body() any }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) Body() any {
+	return map[string]any{
+		"key": "value",
+	}
+}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### TimeoutGetter
 
+Implement this interface to automatically set the timeout for current HTTP request.
+
 ```go
-// TimeoutGetter returns timeout for current request
-//
-// Implement this interface to automatically set the timeout for current HTTP request.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) Timeout() any {
-//		return 3 * time.Second
-//	}
 type TimeoutGetter interface{ Timeout() time.Duration }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) Timeout() time.Duration {
+	return 3 * time.Second
+}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### RetryGetter
 
+Implement this interface to automatically set the retry strategy for current HTTP request.
+
 ```go
-// RetryGetter returns retry strategy for current request
-//
-// Implement this interface to automatically set the retry strategy for current HTTP request.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) Retry() (retryTimes int, retryConds []resty.RetryConditionFunc) {
-//		// retry 3 times when response code is http.StatusTooManyRequests or http.StatusBadRequest
-//		return 3, []resty.RetryConditionFunc {
-//			httpx.RetryWithStatusCodes(http.StatusTooManyRequests, http.StatusBadRequest),
-//		}
-//
-//		// retry 3 times when returns error
-//		return 3, nil
-//	}
 type RetryGetter interface {
 	Retry() (retryTimes int, retryConds []resty.RetryConditionFunc)
+}
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) Retry() (retryTimes int, retryConds []resty.RetryConditionFunc) {
+	return 3, []resty.RetryConditionFunc{
+		func(r *resty.Response, err error) bool { return err != nil },
+		func(r *resty.Response, err error) bool { return r.StatusCode() != http.StatusOK },
+	}
 }
 ```
 
@@ -1044,50 +955,47 @@ type RetryGetter interface {
 
 #### RetryWaitGetter
 
+Implement this interface to automatically set the wait time before retry sleep for current HTTP request.
+
 ```go
-// RetryWaitGetter returns the wait time before retry sleep for current request
-//
-// Implement this interface to automatically set the wait time before retry sleep for current HTTP request.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) RetryWait() time.Duration {
-//		return time.Second
-//	}
 type RetryWaitGetter interface{ RetryWait() time.Duration }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) RetryWait() time.Duration {
+	return 100 * time.Millisecond
+}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### RetryHooksGetter
 
+Implement this interface to automatically set the retry hooks for current HTTP request.
+
 ```go
-// RetryHooksGetter returns retry hooks for current request
-//
-// Implement this interface to automatically set the retry hooks for current HTTP request.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) RetryHooks(ctx context.Context) []resty.RetryHookFunc {
-//		return []resty.RetryHookFunc{
-//			func(r *resty.Response, err error) {
-//				if err != nil {
-//					fmt.Printf("retry once, because an error occurred, error:%+v", err)
-//					return
-//				}
-//
-//				if r != nil && r.Result() != nil {
-//					fmt.Printf("retry once, response:%+v", r.Result())
-//				}
-//			},
-//		}
-//	}
 type RetryHooksGetter interface {
 	RetryHooks(ctx context.Context) []resty.RetryHookFunc
+}
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) RetryHooks(ctx context.Context) []resty.RetryHookFunc {
+	return []resty.RetryHookFunc{
+		func(r *resty.Response, err error) { fmt.Println("retry once") },
+	}
 }
 ```
 
@@ -1095,131 +1003,147 @@ type RetryHooksGetter interface {
 
 #### AllowResponseBodyUnlimitedReadsGetter
 
+Implement this interface for enable the response body in memory that provides an ability to do unlimited reads.
+
+> [!WARNING] Use with case
+> Turning on this feature keeps the response body in memory, which might cause additional memory usage.
+
 ```go
-// AllowResponseBodyUnlimitedReadsGetter return nothing
-//
-// Implement this interface for enable the response body in memory that provides an ability to do unlimited reads.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) AllowResponseBodyUnlimitedReadsGetter() {}
-//
-// Unlimited reads are possible in a few scenarios, even without enabling it.
-//   - When debug mode is enabled
-//
-// NOTE: Use with care
-//   - Turning on this feature keeps the response body in memory, which might cause additional memory usage.
 type AllowResponseBodyUnlimitedReadsGetter interface{ AllowResponseBodyUnlimitedReads() }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) AllowResponseBodyUnlimitedReads() {}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### AllowMethodGetPayloadGetter
 
+Implement this interface will allows the GET method with payload on the Resty client.
+
 ```go
-// AllowMethodGetPayloadGetter return nothing
-//
-// Implement this interface will allows the GET method with payload on the Resty client.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) AllowMethodGetPayloadGetter() {}
 type AllowMethodGetPayloadGetter interface{ AllowMethodGetPayload() }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) AllowMethodGetPayload() {}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### AllowMethodDeletePayloadGetter
 
+Implement this interface will allows the DELETE method with payload on the Resty client.
+
 ```go
-// AllowMethodDeletePayloadGetter return nothing
-//
-// Implement this interface will allows the DELETE method with payload on the Resty client.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) AllowMethodDeletePayloadGetter() {}
 type AllowMethodDeletePayloadGetter interface{ AllowMethodDeletePayload() }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) AllowMethodDeletePayload() {}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### DebugGetter
 
+Implement this interface will enables the debug mode on the current request. It logs the details current request and response.
+
 ```go
-// DebugGetter return nothing
-//
-// Implement this interface will enables the debug mode on the current request. It logs
-// the details current request and response.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) Debug() {}
 type DebugGetter interface{ Debug() }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) Debug() {}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### TraceGetter
 
+Implement this interface will enables trace for the current request.
+
 ```go
-// TraceGetter return nothing
-//
-// Implement this interface will enables trace for the current request.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) Trace() {}
 type TraceGetter interface{ Trace() }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) Trace() {}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### ExpectResponseContentTypeGetter
 
+Implement this interface to automatically set the fallback `Content-Type` for automatic unmarshalling when the `Content-Type` response header is unavailable.
+
 ```go
-// ExpectResponseContentTypeGetter returns fallback `Content-Type`
-//
-// Implement this interface to automatically set the fallback `Content-Type` for automatic unmarshalling when
-// the `Content-Type` response header is unavailable.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) ExpectResponseContentType() string {
-//		return "application/json"
-//	}
 type ExpectResponseContentTypeGetter interface{ ExpectResponseContentType() string }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) ExpectResponseContentType() string {
+    return "application/json"
+}
 ```
 
 **[⬆ back to top](#contents)**
 
 #### ForceResponseContentTypeGetter
 
+Implement this interface to automatically set the force response `Content-Type` for the current HTTP request.
+
 ```go
-// ForceResponseContentTypeGetter returns force `Content-Type`
-//
-// Implement this interface to automatically set the force response `Content-Type` for the current HTTP request.
-//
-// Usage Example:
-//
-//	type MyRequest struct{}
-//
-//	func (s *MyRequest) ForceResponseContentType() string {
-//		return "application/json"
-//	}
 type ForceResponseContentTypeGetter interface{ ForceResponseContentType() string }
+```
+
+For example:
+
+```go
+package main
+
+type MyRequest struct{}
+
+func (s *MyRequest) ForceResponseContentType() string {
+    return "application/json"
+}
 ```
 
 **[⬆ back to top](#contents)**
