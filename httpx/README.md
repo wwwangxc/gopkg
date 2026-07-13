@@ -1015,7 +1015,7 @@ func (s *MyRequest) RetryHooks(ctx context.Context) []resty.RetryHookFunc {
 
 Implement this interface for enable the response body in memory that provides an ability to do unlimited reads.
 
-> [!WARNING] Use with case
+> [!IMPORTANT]
 > Turning on this feature keeps the response body in memory, which might cause additional memory usage.
 
 ```go
