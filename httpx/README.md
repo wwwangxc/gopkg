@@ -108,6 +108,11 @@ client:
       dial:
         timeout: 3s
         keep_alive: 30s
+    option:
+      trace: true
+      debug: true
+      allow_method_get_payload: true
+      allow_method_delete_payload: true
   service:
     - name: http1
       dsn: https://httpbin.org
@@ -129,6 +134,11 @@ client:
         dial:
           timeout: 5s
           keep_alive: 6s
+      option:
+        trace: false
+        debug: false
+        allow_method_get_payload: false
+        allow_method_delete_payload: false
 ```
 
 **[⬆ back to top](#contents)**
